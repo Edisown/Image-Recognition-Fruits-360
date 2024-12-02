@@ -3,37 +3,45 @@ import os
 import matplotlib.pyplot as plt
 
 # Load dataset paths
-train_dir = '../input/fruits/fruits-360_dataset/fruits-360/Training'
-test_dir = '../input/fruits/fruits-360_dataset/fruits-360/Test'
+train_dir = 'C:/Users/ediso/Desktop/Image-Recognition-Fruits-360/data/fruits-360_dataset/fruits-360/Training'  # Path to your training dataset
+val_dir = 'C:/Users/ediso/Desktop/Image-Recognition-Fruits-360/data/fruits-360_dataset/fruits-360/Validation'  # Path to your validation dataset
+test_dir = 'C:/Users/ediso/Desktop/Image-Recognition-Fruits-360/data/fruits-360_dataset/fruits-360/Test'  # Path to your test dataset
 
-# Load training dataset with validation split
+# Load training dataset
 train_ds = tf.keras.preprocessing.image_dataset_from_directory(
     train_dir,
-    validation_split=0.2,
-    subset='training',
     batch_size=32,
     image_size=(100, 100),
     seed=123,
     shuffle=True,
 )
 
-# Load validation dataset with validation split
+# Load validation dataset
 val_ds = tf.keras.preprocessing.image_dataset_from_directory(
-    train_dir,
-    validation_split=0.2,
-    subset='validation',
+    val_dir,
     batch_size=32,
     image_size=(100, 100),
     seed=42,
+    shuffle=False,
+)
+
+# Load test dataset
+test_ds = tf.keras.preprocessing.image_dataset_from_directory(
+    test_dir,
+    batch_size=32,
+    image_size=(100, 100),
+    seed=123,
+    shuffle=False,
 )
 
 # Cache and prefetch datasets for performance
 AUTOTUNE = tf.data.experimental.AUTOTUNE
 train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
 val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
+test_ds = test_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
 # Get class names from the directory structure
-class_names = sorted(os.listdir(train_dir))
+class_names = sorted(os.listdir(train_dir))  # This assumes your class labels are the subfolder names in the train_dir
 num_classes = len(class_names)
 print("Number of Classes:", num_classes)
 
