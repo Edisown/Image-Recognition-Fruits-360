@@ -25,6 +25,11 @@ x = global_average_layer(x)
 x = tf.keras.layers.Dropout(0.2)(x)
 outputs = prediction_layer(x)
 
+print("Debugging prediction layer configuration:")
+try:
+    print(prediction_layer.get_config())
+except Exception as e:
+    print("Error in prediction layer configuration:", e)
 model = tf.keras.Model(inputs=inputs, outputs=outputs)
 
 # compile the model
@@ -49,6 +54,9 @@ history = model.fit(
 
 # save the model in .h5 format
 model.save('fruit_model.h5')
+
+# model.save('fruit_model.h5', save_format='h5')
+
 
 # plot training and validation accuracy
 plt.plot(history.history['accuracy'], label='Training Accuracy', marker='o')

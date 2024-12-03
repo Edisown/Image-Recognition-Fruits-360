@@ -19,7 +19,7 @@ def predict(model, img_path):
     return predicted_class, confidence
 
 # Predict on a new image
-img_path = 'C:/Users/ediso/Desktop/Image-Recognition-Fruits-360/Predict/image1.jpg'  # path of the image you want to predict
+img_path = '/Predict/image1.jpg'  # path of the image you want to predict
 predicted_class, confidence = predict(model, img_path)
 
 print(f"Predicted class: {predicted_class} with {confidence}% confidence.")

@@ -3,9 +3,9 @@ import os
 import matplotlib.pyplot as plt
 
 # load dataset paths
-train_dir = 'C:/Users/ediso/Desktop/Image-Recognition-Fruits-360/data/fruits-360_dataset/fruits-360/Training'  # training dataset
-val_dir = 'C:/Users/ediso/Desktop/Image-Recognition-Fruits-360/data/fruits-360_dataset/fruits-360/Validation'  # validation dataset
-test_dir = 'C:/Users/ediso/Desktop/Image-Recognition-Fruits-360/data/fruits-360_dataset/fruits-360/Test'  # test dataset
+train_dir = '/data/fruits-360_dataset/fruits-360/Training'  # training dataset
+val_dir = '/data/fruits-360_dataset/fruits-360/Validation'  # validation dataset
+test_dir = '/data/fruits-360_dataset/fruits-360/Test'  # test dataset
 
 # load training dataset
 train_ds = tf.keras.preprocessing.image_dataset_from_directory(
