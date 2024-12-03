@@ -53,9 +53,9 @@ history = model.fit(
 )
 
 # save the model in .h5 format
-model.save('fruit_model.h5', save_format='h5')
-
 # model.save('fruit_model.h5', save_format='h5')
+
+model.save('fruit_model.keras')
 
 
 # plot training and validation accuracy
